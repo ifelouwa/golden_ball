@@ -3,10 +3,14 @@ import { Box, Button, Heading, Input, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../context/Auth.Context";
 import { useNavigate } from "react-router-dom";
+import { useColorModeValue } from "../components/ui/color-mode";
 
 // Login page component
 
 function Login() {
+  // Theme-aware colors
+  const bgColor = useColorModeValue("gray.50", "gray.800");
+  const formBgColor = useColorModeValue("white", "gray.700");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,8 +36,8 @@ function Login() {
   };
 
   return (
-    <Box minH="100vh" display="flex" alignItems="center" justifyContent="center" bg="gray.50">
-      <VStack as="form" onSubmit={handleSubmit} gap={4} py={20} px={8} bg="white" shadow="md" rounded="md">
+    <Box minH="100vh" display="flex" alignItems="center" justifyContent="center" bg={bgColor}>
+      <VStack as="form" onSubmit={handleSubmit} gap={4} py={20} px={8} bg={formBgColor} shadow="md" rounded="md">
         <Heading size="5xl">Login</Heading>
         <Input
           name="email"
