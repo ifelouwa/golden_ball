@@ -2,9 +2,13 @@ import React from "react";
 import { Box, Button, Heading, Text, VStack, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { MdPublic } from "react-icons/md";
+import { useColorModeValue } from "../components/ui/color-mode";
 
 // Home page component
 const Home = () => {
+  // Theme-aware colors for text
+  const textColor = useColorModeValue("black", "white");
+  const iconColor = useColorModeValue("black", "white");
   return (
     <Box
       minH="100vh"
@@ -17,13 +21,13 @@ const Home = () => {
     >
       <VStack spacing={6} textAlign="center">
         <HStack justify="center" pb={8}>
-          <Heading size="5xl" fontWeight="bold" color="black">
+          <Heading size="5xl" fontWeight="bold" color={textColor}>
             Welcome to The Golden Ball
           </Heading>
-          <MdPublic size={48} color="black" />
+          <MdPublic size={48} color={iconColor} />
         </HStack>
 
-        <Text fontSize="lg" maxW="lg" color="black" pb={9}>
+        <Text fontSize="lg" maxW="lg" color={textColor} pb={9}>
           Buy and sell items in real-time auctions. Join thousands of users placing bids and winning amazing deals every day!
         </Text>
 

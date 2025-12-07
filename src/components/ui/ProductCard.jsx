@@ -30,6 +30,7 @@ function ProductCard({ product, user, onDelete, onBid }) {
               color="white"
               bg="red.500"
               _hover={{ bg: "red.600" }}
+              _icon={{ color: "white" }}
               onClick={() => onDelete(product._id)}
               aria-label="Delete product"
             />

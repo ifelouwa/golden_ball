@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/Auth.Context'
 import { MdPublic } from 'react-icons/md'
-import { CgProfile } from 'react-icons/cg'
+import { MdLogout } from "react-icons/md";
+import { ColorModeButton, useColorModeValue } from './color-mode'
 
 // Main navigation component
 function Navbar() {
     // Get user and logout from auth context
     const { user, logout } = useContext(AuthContext);
+
+    // Theme-aware colors
+    const iconColor = useColorModeValue("black", "white");
+    const profileButtonColor = useColorModeValue("black", "white");
 
     return (
         <Container maxW="container.xl" px={4} py={4}>
@@ -18,7 +23,7 @@ function Navbar() {
                     <Heading as="h1" size="lg">
                         <Link to="/">The Golden Ball</Link>
                     </Heading>
-                    <MdPublic size={24} color="black" />
+                    <MdPublic size={24} color={iconColor} />
                 </HStack>
 
                 {/* Navigation links */}
@@ -32,12 +37,13 @@ function Navbar() {
                     {/* Show profile button if logged in, else login/register */}
                     {user ? (
                         <IconButton
-                            icon={<CgProfile />}
+                            icon={<MdLogout />}
                             variant="outline"
                             onClick={logout}
                             aria-label="Profile"
-                            borderColor="black"
-                            color="black"
+                            borderColor={profileButtonColor}
+                            color={profileButtonColor}
+                            _icon={{ color: profileButtonColor }}
                         />
                     ) : (
                         <>
@@ -49,6 +55,8 @@ function Navbar() {
                             </Link>
                         </>
                     )}
+                    {/* Color mode toggle button */}
+                    <ColorModeButton />
                 </HStack>
             </Flex>
         </Container>
