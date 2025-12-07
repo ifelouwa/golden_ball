@@ -8,6 +8,7 @@ function ProductCard({ product, user, onDelete, onBid }) {
   const currentPrice = product.currentPrice || product.startingPrice;
 
   return (
+    // Product card container
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} shadow="md" position="relative">
       <Box position="relative">
         <Image src={product.image.startsWith('http') ? product.image : `${api.defaults.baseURL.replace('/api', '')}${product.image}`} alt={product.title} boxSize="200px" objectFit="cover" />
@@ -33,9 +34,10 @@ function ProductCard({ product, user, onDelete, onBid }) {
               aria-label="Delete product"
             />
           </VStack>
-        )}
-      </Box>
-      <VStack align="start" mt={4} spacing={2}>
+       )}
+     </Box>
+     {/* Product details */}
+     <VStack align="start" mt={4} spacing={2}>
         <Text fontSize="xl" fontWeight="bold">{product.title}</Text>
         <Text>{product.description}</Text>
         <HStack>

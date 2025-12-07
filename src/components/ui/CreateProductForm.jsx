@@ -10,8 +10,9 @@ import {
 import { toaster } from './toaster';
 import api from '../../api/api.client';
 
+// Component for creating new products
 function CreateProductForm({ isOpen, onClose, onProductCreated }) {
-
+  // Form state
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -22,49 +23,52 @@ function CreateProductForm({ isOpen, onClose, onProductCreated }) {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await api.post('/products', formData);
-      if (response.data.success) {
-        toaster.create({
-          title: 'Product created successfully',
-          type: 'success',
-        });
-        onProductCreated();
-        onClose();
-        setFormData({
-          title: '',
-          description: '',
-          startingPrice: '',
-          image: '',
-          startTime: '',
-          endTime: '',
-        });
-      }
-    } catch (error) {
-      const message = error.response?.data?.message || 'Failed to create product';
-      toaster.create({
-        title: 'Error',
-        description: message,
-        type: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
+  // Handle input changes
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    };
+  
+    // Handle form submission
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+    
+        try {
+          const response = await api.post('/products', formData);
+          if (response.data.success) {
+            toaster.create({
+              title: 'Product created successfully',
+              type: 'success',
+            });
+            onProductCreated();
+            onClose();
+            setFormData({
+              title: '',
+              description: '',
+              startingPrice: '',
+              image: '',
+              startTime: '',
+              endTime: '',
+            });
+          }
+        } catch (error) {
+          const message = error.response?.data?.message || 'Failed to create product';
+          toaster.create({
+            title: 'Error',
+            description: message,
+            type: 'error',
+          });
+        } finally {
+          setLoading(false);
+        }
+      };
+    
+      // Render form if open
+      return (
     isOpen && (
       <Box p={4} borderWidth="1px" borderRadius="lg" mb={4}>
         <form onSubmit={handleSubmit}>

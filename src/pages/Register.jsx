@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/Auth.Context";
 import { useNavigate } from "react-router-dom";
 
+  // Registration Form Component
 function Register() {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,9 +14,12 @@ function Register() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+
+  // Handle input changes
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // Handle form submission
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

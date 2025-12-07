@@ -3,6 +3,7 @@ import { Box, Button, Heading, Text, VStack, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { MdPublic } from "react-icons/md";
 
+// Home page component
 const Home = () => {
   return (
     <Box
